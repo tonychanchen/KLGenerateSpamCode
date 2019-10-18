@@ -857,7 +857,7 @@ void modifyFilesClassName(NSString *sourceCodeDir, NSString *oldClassName, NSStr
         }
         
         NSString *fileName = filePath.lastPathComponent;
-        if ([fileName hasSuffix:@".h"] || [fileName hasSuffix:@".m"] || [fileName hasSuffix:@".pch"] || [fileName hasSuffix:@".swift"] || [fileName hasSuffix:@".xib"] || [fileName hasSuffix:@".storyboard"]) {
+        if ([fileName hasSuffix:@".h"] || [fileName hasSuffix:@".m"]  || [fileName hasSuffix:@".mm"] || [fileName hasSuffix:@".pch"] || [fileName hasSuffix:@".swift"] || [fileName hasSuffix:@".xib"] || [fileName hasSuffix:@".storyboard"]) {
             
             NSError *error = nil;
             NSMutableString *fileContent = [NSMutableString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
@@ -888,6 +888,19 @@ void modifyClassNamePrefix(NSMutableString *projectContent, NSString *sourceCode
     for (NSString *filePath in files) {
         NSString *path = [sourceCodeDir stringByAppendingPathComponent:filePath];
         if ([fm fileExistsAtPath:path isDirectory:&isDirectory] && isDirectory) {
+            
+            BOOL isSpecial = NO;
+            NSArray *specialChars = @[@".framework",@".lproj"];
+            for (NSString *itemChar in specialChars) {
+                if ([filePath containsString:itemChar]) {
+                    isSpecial = YES;
+                }
+            }
+            
+            if (isSpecial) {
+                continue;
+            }
+            
             if (![ignoreDirNames containsObject:filePath]) {
                 modifyClassNamePrefix(projectContent, path, ignoreDirNames, oldName, newName);
             }
@@ -907,19 +920,37 @@ void modifyClassNamePrefix(NSMutableString *projectContent, NSString *sourceCode
                 [fileNameStr replaceCharactersInRange:[fileName rangeOfString:oldNamePlus] withString:[NSString stringWithFormat:@"+%@",newName]];
                 newClassName = fileNameStr;
             }else{
-                newClassName = [newName stringByAppendingString:fileName];
+//                newClassName = [newName stringByAppendingString:fileName];
+                continue;//不添加不识别的前缀了，避免类冲突
             }
         }
         
         // 文件名 Const.ext > DDConst.ext
         if ([fileExtension isEqualToString:@"h"]) {
             NSString *mFileName = [fileName stringByAppendingPathExtension:@"m"];
+            NSString *mmFileName = [fileName stringByAppendingPathExtension:@"mm"];
             if ([files containsObject:mFileName]) {
                 NSString *oldFilePath = [[sourceCodeDir stringByAppendingPathComponent:fileName] stringByAppendingPathExtension:@"h"];
                 NSString *newFilePath = [[sourceCodeDir stringByAppendingPathComponent:newClassName] stringByAppendingPathExtension:@"h"];
                 renameFile(oldFilePath, newFilePath);
                 oldFilePath = [[sourceCodeDir stringByAppendingPathComponent:fileName] stringByAppendingPathExtension:@"m"];
                 newFilePath = [[sourceCodeDir stringByAppendingPathComponent:newClassName] stringByAppendingPathExtension:@"m"];
+                renameFile(oldFilePath, newFilePath);
+                oldFilePath = [[sourceCodeDir stringByAppendingPathComponent:fileName] stringByAppendingPathExtension:@"xib"];
+                if ([fm fileExistsAtPath:oldFilePath]) {
+                    newFilePath = [[sourceCodeDir stringByAppendingPathComponent:newClassName] stringByAppendingPathExtension:@"xib"];
+                    renameFile(oldFilePath, newFilePath);
+                }
+                
+                @autoreleasepool {
+                    modifyFilesClassName(gSourceCodeDir, fileName, newClassName);
+                }
+            }else if ([files containsObject:mmFileName]) {
+                NSString *oldFilePath = [[sourceCodeDir stringByAppendingPathComponent:fileName] stringByAppendingPathExtension:@"h"];
+                NSString *newFilePath = [[sourceCodeDir stringByAppendingPathComponent:newClassName] stringByAppendingPathExtension:@"h"];
+                renameFile(oldFilePath, newFilePath);
+                oldFilePath = [[sourceCodeDir stringByAppendingPathComponent:fileName] stringByAppendingPathExtension:@"mm"];
+                newFilePath = [[sourceCodeDir stringByAppendingPathComponent:newClassName] stringByAppendingPathExtension:@"mm"];
                 renameFile(oldFilePath, newFilePath);
                 oldFilePath = [[sourceCodeDir stringByAppendingPathComponent:fileName] stringByAppendingPathExtension:@"xib"];
                 if ([fm fileExistsAtPath:oldFilePath]) {
@@ -953,5 +984,9 @@ void modifyClassNamePrefix(NSMutableString *projectContent, NSString *sourceCode
         // 修改工程文件中的文件名
         NSString *regularExpression = [NSString stringWithFormat:@"\\b%@\\b", fileName];
         regularReplacement(projectContent, regularExpression, newClassName);
+        
+//        if ([path containsString:@"Base.lproj"]) {
+//            printf("MainInterface");
+//        }
     }
 }

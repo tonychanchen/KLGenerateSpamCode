@@ -46,3 +46,20 @@ $ ./GenerateSpamCode \
 ## 已知问题
 - 生成的垃圾代码文件可能是 .m 文件中实现的私有类，编译垃圾代码可能会报错，删除该垃圾代码 .h .m 文件及可。
 
+
+
+```
+find . -iname "*.swift" -exec sh -c "iconv -t UTF-8 {}" \;
+1.KLGenerateSpamCode配置运行参数
+1.0 修改Base.swift,防止替换Base.lproj等等
+1.1 modifyClassNamePrefix、spamCodeOut 运行
+1.11 删除swiftlint检测
+1.2 modifyProjectName 运行
+
+2. 改变资源hash： find . -iname "*.png" -exec echo {} \; -exec convert {} {} \; 
+2.1 验证某个资源hash： md5 bb7tUJrOhH.png
+
+3 修改资源名称与代码对应的资源名称
+3.1 python AssetsRename.py
+```
+https://www.vincents.cn/2018/10/24/ios-hikari/
