@@ -863,7 +863,8 @@ void modifyFilesClassName(NSString *sourceCodeDir, NSString *oldClassName, NSStr
             NSMutableString *fileContent = [NSMutableString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error];
             if (error) {
                 printf("打开文件 %s 失败：%s\n", path.UTF8String, error.localizedDescription.UTF8String);
-                abort();
+                continue;
+//                abort();
             }
             
             NSString *regularExpression = [NSString stringWithFormat:@"\\b%@\\b", oldClassName];
