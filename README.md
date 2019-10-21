@@ -5,6 +5,22 @@
 
 ![Image text](https://github.com/tonychanchen/KLGenerateSpamCode/raw/master/WCd238227f.png)
 
+马甲包步骤
+1.运行KLGenerateSpamCode (修改过部分逻辑https://github.com/tonychanchen/KLGenerateSpamCode.git)
+￼
+2.删除swiftlint检测脚本
+3.￼
+4.修改podfile podinstall
+5.修改pch文件名称
+6.更改资源hash
+find . -iname "*.png" -exec echo {} \; -exec convert {} {} \;
+7.修改资源path名称与代码对应名称
+python AssetsRename.py  （执行1和3method）
+8.生成垃圾代码
+python CodeFile.py 
+
+
+
 1. 修改工程名
 1. 修改类名前缀
 1. 扫描工程中的代码，生成同等数量的 Category 文件，文件中及是同等方法数量的垃圾代码。
