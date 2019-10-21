@@ -52,7 +52,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "/Users/chenying/Desktop/ufoto/facefoto/FaceFoto"
+            argument = "/Users/chenying/Desktop/ufoto/SweetChatiOS/SweetChat"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -64,20 +64,20 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-ignoreDirNames Filters,Editor,AdvanceEditor,Vendor,Extension,Camera,JSiMessage,3rd,Blurring,Base.lproj,"
+            argument = "-ignoreDirNames Filters,Editor,AdvanceEditor,Vendor,Extension,Camera,JSiMessage,3rd,Blurring,Base.lproj"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-modifyProjectName FaceFoto&gt;UFTestDemo333"
+            argument = "-modifyProjectName SweetChat&gt;UFTestDemo555"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-modifyClassNamePrefix /Users/chenying/Desktop/ufoto/facefoto/FaceFoto.xcodeproj FF&gt;CY"
+            argument = "-modifyClassNamePrefix /Users/chenying/Desktop/ufoto/SweetChatiOS/SweetChat.xcodeproj SW&gt;TC"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-spamCodeOut /Users/chenying/Desktop/ufoto/facefoto/rabbit VVUF"
-            isEnabled = "YES">
+            isEnabled = "NO">
          </CommandLineArgument>
       </CommandLineArguments>
    </LaunchAction>

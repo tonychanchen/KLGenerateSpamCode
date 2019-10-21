@@ -2,6 +2,9 @@
 本工具用于应对苹果对重复应用的审核（Guideline 4.3 Design Spam），避免苹果机审检测概率。
 
 ## 主要功能
+
+![Image text](https://github.com/tonychanchen/KLGenerateSpamCode/raw/master/WCd238227f.png)
+
 1. 修改工程名
 1. 修改类名前缀
 1. 扫描工程中的代码，生成同等数量的 Category 文件，文件中及是同等方法数量的垃圾代码。

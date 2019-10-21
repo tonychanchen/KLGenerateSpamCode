@@ -6,12 +6,12 @@ import json
 import io
 
 # asset 目录路径
-assets_path = '/Users/chenying/Desktop/ufoto/facefoto/UFTestDemo333/Assets.xcassets'
+assets_path = '/Users/chenying/Desktop/ufoto/SweetChatiOS/UFTestDemo555/Assets.xcassets'
 
 # 项目目录
-project_path = '/Users/chenying/Desktop/ufoto/facefoto/UFTestDemo333'
-config_path = '/Users/chenying/Desktop/ufoto/facefoto/UFTestDemo333/Assets.xcassets/ConvertDirs.json'
-suf_set = ('.h', '.m', '.xib', '.mm', '.pch', '.swift')
+project_path = '/Users/chenying/Desktop/ufoto/SweetChatiOS/UFTestDemo555'
+config_path = '/Users/chenying/Desktop/ufoto/SweetChatiOS/UFTestDemo555/Assets.xcassets/ConvertDirs.json'
+suf_set = ('.h', '.m', '.xib', '.storyboard', '.mm', '.pch', '.swift')
 
 #改变路径字典
 change_paths = {}
@@ -31,7 +31,8 @@ def rename_path():
             if os.path.splitext(dir_name)[1] != '.imageset' or root.split('/')[-1] == 'Assets.xcassets' or root.split('/')[-1] == 'AppIcon.appiconset':
                 continue
             super_dir_name = root.split('/')[-1]
-            to_name = super_dir_name + "_CY" + dir_name
+#            to_name = super_dir_name + "_CY" + dir_name
+            to_name = "CY0x1F48B" + dir_name
 #            print ("rootDir---%s--tagnaPath-%s" %(super_dir_name, dir_name))
             if dir_name.startswith(super_dir_name):
                 continue
@@ -166,5 +167,5 @@ def replace_image_name_in_code():
 if __name__ == '__main__':
 
 #    rename_path()
-#    correct_imageset()
+#    correct_imageset() //暂时不用
     replace_image_name_in_code()
