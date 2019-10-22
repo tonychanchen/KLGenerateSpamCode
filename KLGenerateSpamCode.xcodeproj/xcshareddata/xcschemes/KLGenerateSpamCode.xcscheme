@@ -52,7 +52,7 @@
       </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
-            argument = "/Users/chenying/Desktop/ufoto/SweetChatiOS/SweetChat"
+            argument = "/Users/chenying/Desktop/ufoto/icamera-ios/iCameraApp/iCameraApp"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
@@ -68,11 +68,11 @@
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-modifyProjectName SweetChat&gt;UFTestDemo555"
+            argument = "-modifyProjectName iCameraApp&gt;CSYCamera"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-modifyClassNamePrefix /Users/chenying/Desktop/ufoto/SweetChatiOS/SweetChat.xcodeproj SW&gt;TC"
+            argument = "-modifyClassNamePrefix /Users/chenying/Desktop/ufoto/icamera-ios/iCameraApp/iCameraApp.xcodeproj UF&gt;CSY"
             isEnabled = "YES">
          </CommandLineArgument>
          <CommandLineArgument

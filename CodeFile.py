@@ -8,7 +8,7 @@ import io
 
 ## 方法重命名
 
-project_path = '/Users/chenying/Desktop/ufoto/SweetChatiOS/SweetChat'
+project_path = '/Users/chenying/Desktop/ufoto/facefoto/CSYCamera'
 suf_set = ('.h', '.m', '.xib', '.mm', '.pch', '.swift')
 
 
@@ -258,6 +258,10 @@ def file_classname_in_path(file_path):
 #    with io.open(file_path, 'r+', encoding='utf-8') as f:
         lines = f.readlines()
         for line in lines:
+        
+            if line.strip().startswith('return'):
+                continue
+            
             if line.__contains__('extension'.encode()):
                 
                 if line.strip().startswith('//'):
@@ -289,6 +293,12 @@ def file_classname_in_path(file_path):
                     continue
                 
                 if line.strip().startswith('@class'):
+                    continue
+                
+                if line.strip().startswith('#import'):
+                    continue
+                
+                if line.strip().endswith(';'):
                     continue
                 
                 print(line.split())

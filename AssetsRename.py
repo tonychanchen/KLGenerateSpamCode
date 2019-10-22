@@ -6,11 +6,11 @@ import json
 import io
 
 # asset 目录路径
-assets_path = '/Users/chenying/Desktop/ufoto/SweetChatiOS/UFTestDemo555/Assets.xcassets'
+assets_path = '/Users/chenying/Desktop/ufoto/facefoto/CSYCamera/Assets.xcassets'
 
 # 项目目录
-project_path = '/Users/chenying/Desktop/ufoto/SweetChatiOS/UFTestDemo555'
-config_path = '/Users/chenying/Desktop/ufoto/SweetChatiOS/UFTestDemo555/Assets.xcassets/ConvertDirs.json'
+project_path = '/Users/chenying/Desktop/ufoto/facefoto/CSYCamera'
+config_path = '/Users/chenying/Desktop/ufoto/facefoto/CSYCamera/Assets.xcassets/ConvertDirs.json'
 suf_set = ('.h', '.m', '.xib', '.storyboard', '.mm', '.pch', '.swift')
 
 #改变路径字典

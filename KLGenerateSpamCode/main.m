@@ -698,7 +698,13 @@ void deleteComments(NSString *directory, NSArray<NSString *> *ignoreDirNames) {
             continue;
         }
         if (![fileName hasSuffix:@".h"] && ![fileName hasSuffix:@".m"] && ![fileName hasSuffix:@".mm"] && ![fileName hasSuffix:@".swift"]) continue;
-        NSMutableString *fileContent = [NSMutableString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+//        NSMutableString *fileContent = [NSMutableString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+        NSError *error = nil;
+        NSMutableString *fileContent = [NSMutableString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:&error];
+        if (error) {
+            printf("打开文件 %s 失败：%s\n", filePath.UTF8String, error.localizedDescription.UTF8String);
+            continue;
+        }
         regularReplacement(fileContent, @"([^:/])//.*",             @"\\1");
         regularReplacement(fileContent, @"^//.*",                   @"");
         regularReplacement(fileContent, @"/\\*{1,2}[\\s\\S]*?\\*/", @"");
