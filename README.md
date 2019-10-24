@@ -24,6 +24,8 @@ python AssetsRename.py  （执行1和3method）
 8. 生成垃圾代码
 python CodeFile.py 
 
+9. 混乱json文件
+randomJson.py
 
 
 
