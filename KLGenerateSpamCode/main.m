@@ -94,7 +94,8 @@ BOOL regularReplacement(NSMutableString *originalString, NSString *regularExpres
         }
         if (isGroupNo1) {
             NSString *withString = [originalString substringWithRange:[obj rangeAtIndex:1]];
-            [originalString replaceCharactersInRange:obj.range withString:withString];
+//            [originalString replaceCharactersInRange:obj.range withString:withString];
+            [originalString replaceCharactersInRange:obj.range withString:@""];
         } else {
             [originalString replaceCharactersInRange:obj.range withString:newString];
         }
@@ -705,10 +706,11 @@ void deleteComments(NSString *directory, NSArray<NSString *> *ignoreDirNames) {
             printf("打开文件 %s 失败：%s\n", filePath.UTF8String, error.localizedDescription.UTF8String);
             continue;
         }
-        regularReplacement(fileContent, @"([^:/])//.*",             @"\\1");
-        regularReplacement(fileContent, @"^//.*",                   @"");
-        regularReplacement(fileContent, @"/\\*{1,2}[\\s\\S]*?\\*/", @"");
-        regularReplacement(fileContent, @"^\\s*\\n",                @"");
+        regularReplacement(fileContent, @"([^:/])//  Created by.*",             @"\\1");
+        regularReplacement(fileContent, @"([^:/])//  Copyright.*",             @"\\1");
+//        regularReplacement(fileContent, @"^//.*",                   @"");
+//        regularReplacement(fileContent, @"/\\*{1,2}[\\s\\S]*?\\*/", @"");
+//        regularReplacement(fileContent, @"^\\s*\\n",                @"");
         [fileContent writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
     }
 }
